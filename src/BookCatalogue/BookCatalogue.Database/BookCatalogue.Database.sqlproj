@@ -61,7 +61,6 @@
     <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\Genre.sql" />
     <Build Include="dbo\Tables\Author.sql" />
     <Build Include="dbo\Tables\Book.sql" />
     <Build Include="dbo\Tables\BookAuthor.sql" />
