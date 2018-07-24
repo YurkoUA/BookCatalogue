@@ -59,10 +59,17 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\StoredProcedures" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Author.sql" />
     <Build Include="dbo\Tables\Book.sql" />
     <Build Include="dbo\Tables\BookAuthor.sql" />
+    <Build Include="dbo\Views\v_Authors.sql" />
+    <Build Include="dbo\Views\v_Books.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_ByAuthor.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_Find.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Author_Find.sql" />
   </ItemGroup>
 </Project>
