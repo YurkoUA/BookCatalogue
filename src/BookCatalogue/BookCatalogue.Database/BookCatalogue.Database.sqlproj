@@ -71,5 +71,10 @@
     <Build Include="dbo\StoredProcedures\USP_Book_ByAuthor.sql" />
     <Build Include="dbo\StoredProcedures\USP_Book_Find.sql" />
     <Build Include="dbo\StoredProcedures\USP_Author_Find.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Author_Get.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_Get.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Author_GetList.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_GetList.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Author_GetByName.sql" />
   </ItemGroup>
 </Project>
