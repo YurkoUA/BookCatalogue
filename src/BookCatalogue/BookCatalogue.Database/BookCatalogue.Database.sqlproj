@@ -61,6 +61,7 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\StoredProcedures" />
     <Folder Include="dbo\Views" />
+    <Folder Include="dbo\User Defined Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Author.sql" />
@@ -76,5 +77,8 @@
     <Build Include="dbo\StoredProcedures\USP_Author_GetList.sql" />
     <Build Include="dbo\StoredProcedures\USP_Book_GetList.sql" />
     <Build Include="dbo\StoredProcedures\USP_Author_GetByName.sql" />
+    <Build Include="dbo\User Defined Types\IntArrayType.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\USP_Book_Update.sql" />
   </ItemGroup>
 </Project>
