@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Dapper.Contrib.Extensions;
 
 namespace BookCatalogue.Data.Entities
 {
+    [Table("Author")]
     public class AuthorEM
     {
-        public int Id { get; set; }
+        [Key]
+        public long Id { get; set; }
         public string Name { get; set; }
+
+        [Write(false)]
         public int BooksCount { get; set; }
     }
 }

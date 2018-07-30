@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BookCatalogue.Infrastructure.Repositories
 {
-    public interface IBookRepository<TAuthor, TKey> : IRepository<TAuthor, TKey> where TAuthor : class
+    public interface IBookRepository<TBook> : IRepository<TBook> where TBook : class
     {
+        IEnumerable<TBook> GetAllBooks(long offset, long take);
+        TBook GetBook(long id);
+
+        long CreateBook(TBook author);
+        void EditBook(TBook author);
+        void DeleteBook(long id);
     }
 }

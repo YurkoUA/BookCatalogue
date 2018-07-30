@@ -4,14 +4,14 @@ using System.Text;
 
 namespace BookCatalogue.Infrastructure.Repositories
 {
-    public interface IRepository<TEntity, TKey> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
-        TEntity Get(TKey id);
+        TEntity Get(long id);
 
-        TKey Insert(TEntity entity);
+        long Insert(TEntity entity);
         void Update(TEntity entity);
-        void Delete(TKey id);
+        void Delete(long id);
 
         void ExecuteQuery(string query, object paramModel);
         TEntity ExecuteQuerySingle(string query, object paramModel);
