@@ -2,8 +2,7 @@
 	@Id int
 AS
 
-	SELECT TOP 1
-	*
+	SELECT *
 	FROM [v_Books]
 	WHERE [v_Books].[Id] = @Id
 
