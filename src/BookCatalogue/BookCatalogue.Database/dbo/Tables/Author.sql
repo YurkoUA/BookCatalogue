@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Author]
 (
-	[Id]	INT				IDENTITY(1,1)	NOT NULL,
-	[Name]	NVARCHAR(64)					NOT NULL,
+	[Id]	BIGINT				IDENTITY(1,1)	NOT NULL,
+	[Name]	NVARCHAR(64)						NOT NULL,
 	PRIMARY KEY CLUSTERED ([Id] DESC)
 )
 

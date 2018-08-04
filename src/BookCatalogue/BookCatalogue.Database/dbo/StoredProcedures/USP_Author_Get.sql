@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[USP_Author_Get]
-	@Id int
+	@Id BIGINT
 AS
 
 	SELECT *

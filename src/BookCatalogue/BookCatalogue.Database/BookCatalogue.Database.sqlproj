@@ -76,7 +76,7 @@
     <Build Include="dbo\StoredProcedures\USP_Book_Get.sql" />
     <Build Include="dbo\StoredProcedures\USP_Author_GetList.sql" />
     <Build Include="dbo\StoredProcedures\USP_Book_GetList.sql" />
-    <Build Include="dbo\User Defined Types\IntArrayType.sql" />
+    <Build Include="dbo\User Defined Types\BigIntArrayType.sql" />
     <Build Include="dbo\StoredProcedures\USP_Book_Insert.sql" />
     <Build Include="dbo\StoredProcedures\USP_Book_Update.sql" />
   </ItemGroup>

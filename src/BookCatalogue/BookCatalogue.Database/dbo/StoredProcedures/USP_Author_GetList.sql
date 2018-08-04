@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[USP_Author_GetList]
-	@offset int = 0,
-	@take int = 10
+	@offset BIGINT = 0,
+	@take	BIGINT = 10
 AS
 	SELECT *
 	FROM [v_Authors] AS [a]

@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[USP_Book_Update]
-	@Id INT,
+	@Id BIGINT,
 	@Title NVARCHAR(64),
 	@Pages INT,
 	@Rating INT,
 	@PublishedDate DATE,
-	@AuthorsIds IntArrayType READONLY
+	@AuthorsIds BigIntArrayType READONLY
 AS
 	
 BEGIN TRANSACTION

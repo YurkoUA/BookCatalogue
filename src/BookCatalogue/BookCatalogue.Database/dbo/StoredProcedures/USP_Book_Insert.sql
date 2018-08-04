@@ -3,7 +3,7 @@
 	@Pages INT,
 	@Rating INT,
 	@PublishedDate DATE,
-	@AuthorsIds IntArrayType READONLY
+	@AuthorsIds BigIntArrayType READONLY
 AS
 
 BEGIN TRANSACTION
