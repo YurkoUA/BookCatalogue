@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookCatalogue.Data.Entity\BookCatalogue.Data.Entity.csproj" />
+    <PackageReference Include="Dapper.Contrib" Version="1.50.5" />
   </ItemGroup>
 
 </Project>

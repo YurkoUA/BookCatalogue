@@ -71,10 +71,12 @@ namespace BookCatalogue.Data.Repositories
             return PerformOperation(db => db.Query<TEntity>(name, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
-            where TFirst : class
-            where TSecond : class
-            where TReturn : class
+        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel)
+        {
+            return PerformOperation(db => db.Query(name, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
+        }
+
+        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel)
         {
             return PerformOperation(db => db.Query(name, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }

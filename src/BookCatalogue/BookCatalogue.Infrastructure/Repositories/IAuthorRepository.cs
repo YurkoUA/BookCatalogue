@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
+using BookCatalogue.Data.Entity;
 
 namespace BookCatalogue.Infrastructure.Repositories
 {
-    public interface IAuthorRepository<TAuthor> : IRepository<TAuthor> where TAuthor : class
+    public interface IAuthorRepository : IRepository<AuthorEM>
     {
-        IEnumerable<TAuthor> GetAllAuthors(long offset, long take);
-        TAuthor GetAuthor(long id);
+        IEnumerable<AuthorEM> GetAllAuthors(long offset, long take);
+        AuthorEM GetAuthor(long id);
+        IEnumerable<AuthorEM> FindAuthor(string name);
 
-        long CreateAuthor(TAuthor author);
-        void EditAuthor(TAuthor author);
+        long CreateAuthor(AuthorEM author);
+        void EditAuthor(AuthorEM author);
         void DeleteAuthor(long id);
     }
 }

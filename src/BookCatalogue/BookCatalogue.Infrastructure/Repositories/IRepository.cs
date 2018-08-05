@@ -17,8 +17,12 @@ namespace BookCatalogue.Infrastructure.Repositories
         TEntity ExecuteQuerySingle(string query, object paramModel);
 
         void ExecuteSP(string name, object paramModel);
+
         TEntity ExecuteSPSingle(string name, object paramModel);
 
         IEnumerable<TEntity> ExecuteSimpleSP(string name, object paramModel);
+
+        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel);
+        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel);
     }
 }

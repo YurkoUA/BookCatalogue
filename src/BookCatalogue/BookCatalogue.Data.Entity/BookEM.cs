@@ -1,7 +1,7 @@
 ﻿using Dapper.Contrib.Extensions;
 using System.Collections.Generic;
 
-namespace BookCatalogue.Data.Entities
+namespace BookCatalogue.Data.Entity
 {
     [Table("Book")]
     public class BookEM

@@ -1,6 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 
-namespace BookCatalogue.Data.Entities
+namespace BookCatalogue.Data.Entity
 {
     [Table("Author")]
     public class AuthorEM
