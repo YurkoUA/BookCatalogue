@@ -19,7 +19,7 @@ namespace BookCatalogue.Bootstrap
 
         public static void ConfigureDatabase(this IServiceCollection services, string connectionString)
         {
-            services.AddSingleton<IDbContext>((provider) =>
+            services.AddScoped<IDbContext>((provider) =>
             {
                 return new DbContext(connectionString);
             });
@@ -27,16 +27,16 @@ namespace BookCatalogue.Bootstrap
 
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IAuthorRepository, AuthorRepository>();
-            services.AddSingleton<IBookRepository, BookRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
         }
 
         public static void ConfigureServices(this IServiceCollection services)
         {
-            services.AddSingleton<IAuthorService, AuthorService>();
-            services.AddSingleton<IBookService, BookService>();
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IBookService, BookService>();
 
-            services.AddSingleton<IMappingService, MappingService>();
+            services.AddScoped<IMappingService, MappingService>();
         }
     }
 }
