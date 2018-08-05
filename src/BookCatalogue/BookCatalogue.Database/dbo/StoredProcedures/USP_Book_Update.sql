@@ -16,7 +16,7 @@ BEGIN TRANSACTION
 	DELETE FROM [BookAuthor]
 	WHERE [BookAuthor].[BookId] = @Id AND [BookAuthor].[AuthorId] NOT IN (SELECT * FROM @AuthorsIds)
 
-	DECLARE @authorsToInsert IntArrayType
+	DECLARE @authorsToInsert BigIntArrayType
 
 	INSERT INTO @authorsToInsert
 	SELECT [Item] FROM @AuthorsIds WHERE [Item] NOT IN (SELECT [ba].[AuthorId] FROM [BookAuthor] AS [ba] WHERE [ba].[BookId] = @Id)
