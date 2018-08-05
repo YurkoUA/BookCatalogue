@@ -12,5 +12,7 @@ namespace BookCatalogue.Infrastructure.Repositories
         long CreateAuthor(AuthorEM author);
         void EditAuthor(AuthorEM author);
         void DeleteAuthor(long id);
+
+        bool CanBeDeleted(long id);
     }
 }

@@ -6,16 +6,17 @@ using System.Text;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using BookCatalogue.Infrastructure.Repositories;
+using BookCatalogue.Infrastructure.Interfaces;
 
 namespace BookCatalogue.Data.Repositories
 {
     public abstract class DapperRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly string connectionString;
+        private readonly IDbContext dbContext;
 
-        protected DapperRepository(string connectionString)
+        protected DapperRepository(IDbContext dbContext)
         {
-            this.connectionString = connectionString;
+            this.dbContext = dbContext;
         }
 
         public IEnumerable<TEntity> GetAll()
@@ -56,6 +57,11 @@ namespace BookCatalogue.Data.Repositories
             return PerformOperation(db => db.QueryFirstOrDefault<TEntity>(query, paramModel));
         }
 
+        public TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel)
+        {
+            return PerformOperation(db => db.QueryFirstOrDefault<TReturn>(query, paramModel));
+        }
+
         public void ExecuteSP(string name, object paramModel)
         {
             PerformOperation(db => db.Query(name, paramModel, commandType: CommandType.StoredProcedure));
@@ -85,7 +91,7 @@ namespace BookCatalogue.Data.Repositories
 
         private void PerformOperation(Action<IDbConnection> action)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(dbContext.ConnectionString))
             {
                 action(db);
             }
@@ -93,7 +99,7 @@ namespace BookCatalogue.Data.Repositories
 
         private TResult PerformOperation<TResult>(Func<IDbConnection, TResult> func)
         {
-            using (IDbConnection db = new SqlConnection(connectionString))
+            using (IDbConnection db = new SqlConnection(dbContext.ConnectionString))
             {
                 return func(db);
             }

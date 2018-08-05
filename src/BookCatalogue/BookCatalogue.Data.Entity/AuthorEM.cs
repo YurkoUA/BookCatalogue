@@ -10,6 +10,6 @@ namespace BookCatalogue.Data.Entity
         public string Name { get; set; }
 
         [Write(false)]
-        public int BooksCount { get; set; }
+        public long BooksCount { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[USP_Book_Insert]
 	@Title NVARCHAR(64),
 	@Pages INT,
-	@Rating INT,
 	@PublishedDate DATE,
 	@AuthorsIds BigIntArrayType READONLY
 AS
@@ -11,9 +10,9 @@ BEGIN TRANSACTION
 	DECLARE @InsertedBook TABLE (Id INT)
 	DECLARE @InsertedBookId INT
 
-	INSERT INTO [Book]([Title], [Pages], [Rating], [PublishedDate])
+	INSERT INTO [Book]([Title], [Pages], [PublishedDate])
 		OUTPUT INSERTED.Id INTO @InsertedBook
-		VALUES (@Title, @Pages, @Rating, @PublishedDate)
+		VALUES (@Title, @Pages, @PublishedDate)
 
 	SET @InsertedBookId = (SELECT TOP 1 [Id] FROM @InsertedBook)
 

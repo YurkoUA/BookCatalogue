@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BookCatalogue.Infrastructure.Repositories
 {
@@ -15,6 +14,7 @@ namespace BookCatalogue.Infrastructure.Repositories
 
         void ExecuteQuery(string query, object paramModel);
         TEntity ExecuteQuerySingle(string query, object paramModel);
+        TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel);
 
         void ExecuteSP(string name, object paramModel);
 

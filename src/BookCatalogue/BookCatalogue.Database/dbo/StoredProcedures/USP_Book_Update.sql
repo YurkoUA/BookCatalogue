@@ -2,7 +2,6 @@
 	@Id BIGINT,
 	@Title NVARCHAR(64),
 	@Pages INT,
-	@Rating INT,
 	@PublishedDate DATE,
 	@AuthorsIds BigIntArrayType READONLY
 AS
@@ -11,7 +10,6 @@ BEGIN TRANSACTION
 	UPDATE [Book] SET
 		[Title] = @Title,
 		[Pages] = @Pages,
-		[Rating] = @Rating,
 		[PublishedDate] = @PublishedDate
 	WHERE [Book].[Id] = @Id
 

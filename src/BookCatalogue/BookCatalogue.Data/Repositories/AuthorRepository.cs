@@ -2,12 +2,13 @@
 using Dapper;
 using BookCatalogue.Infrastructure.Repositories;
 using BookCatalogue.Data.Entity;
+using BookCatalogue.Infrastructure.Interfaces;
 
 namespace BookCatalogue.Data.Repositories
 {
     public class AuthorRepository : DapperRepository<AuthorEM>, IAuthorRepository
     {
-        protected AuthorRepository(string connectionString) : base(connectionString)
+        public AuthorRepository(IDbContext dbContext) : base(dbContext)
         {
         }
 
@@ -49,6 +50,16 @@ namespace BookCatalogue.Data.Repositories
         public void DeleteAuthor(long id)
         {
             Delete(id);
+        }
+
+        public bool CanBeDeleted(long id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@authorId", id);
+
+            var sql = @"SELECT [dbo].[fn_Author_CanBeDeleted](@authorId)";
+
+            return ExecuteQuerySingle<bool>(sql, parameters);
         }
     }
 }

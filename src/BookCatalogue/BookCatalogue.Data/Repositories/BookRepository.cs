@@ -6,12 +6,13 @@ using Dapper;
 using BookCatalogue.Data.Entity;
 using BookCatalogue.Infrastructure.Repositories;
 using BookCatalogue.Infrastructure.Extensions;
+using BookCatalogue.Infrastructure.Interfaces;
 
 namespace BookCatalogue.Data.Repositories
 {
     public class BookRepository : DapperRepository<BookEM>, IBookRepository
     {
-        protected BookRepository(string connectionString) : base(connectionString)
+        public BookRepository(IDbContext dbContext) : base(dbContext)
         {
         }
 
