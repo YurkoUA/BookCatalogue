@@ -40,7 +40,7 @@ namespace BookCatalogue.Data.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("@Id", id);
 
-            return _Get("USP_Book_GetList", parameters).FirstOrDefault();
+            return _Get("USP_Book_Get", parameters).FirstOrDefault();
         }
 
         public IEnumerable<BookEM> FindBook(string name)
@@ -56,11 +56,16 @@ namespace BookCatalogue.Data.Repositories
             var parameters = new DynamicParameters();
             parameters.Add("@Title", book.Title);
             parameters.Add("@Pages", book.Pages);
-            parameters.Add("@PublishedDate", book.Authors.Select(a => a.Id).AsDataTableParam());
-            parameters.Add("@Id", dbType: DbType.Int64, direction: ParameterDirection.ReturnValue);
+            parameters.Add("@PublishedDate", book.PublishedDate);
+
+            // TODO: Name of the type make as a const.
+            parameters.Add("@AuthorsIds", book.Authors.Select(a => a.Id).AsDataTableParam().AsTableValuedParameter("BigIntArrayType"));
+
+            // TODO: Problems with casting Int32 to Int64.
+            parameters.Add("@Id", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
             ExecuteSP("USP_Book_Insert", parameters);
-            return parameters.Get<long>("@Id");
+            return parameters.Get<int>("@Id");
         }
 
         public void EditBook(BookEM book)
@@ -69,7 +74,10 @@ namespace BookCatalogue.Data.Repositories
             parameters.Add("@Id", book.Id);
             parameters.Add("@Title", book.Title);
             parameters.Add("@Pages", book.Pages);
-            parameters.Add("@PublishedDate", book.Authors.Select(a => a.Id).AsDataTableParam());
+            parameters.Add("@PublishedDate", book.PublishedDate);
+
+            // TODO: Name of the type make as a const.
+            parameters.Add("@AuthorsIds", book.Authors.Select(a => a.Id).AsDataTableParam().AsTableValuedParameter("BigIntArrayType"));
 
             ExecuteSP("USP_Book_Update", parameters);
         }

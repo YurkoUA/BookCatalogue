@@ -7,8 +7,8 @@ AS
 
 BEGIN TRANSACTION
 
-	DECLARE @InsertedBook TABLE (Id INT)
-	DECLARE @InsertedBookId INT
+	DECLARE @InsertedBook TABLE (Id BIGINT)
+	DECLARE @InsertedBookId BIGINT
 
 	INSERT INTO [Book]([Title], [Pages], [PublishedDate])
 		OUTPUT INSERTED.Id INTO @InsertedBook

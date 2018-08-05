@@ -1,5 +1,6 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using System;
 using System.Collections.Generic;
+using Dapper.Contrib.Extensions;
 
 namespace BookCatalogue.Data.Entity
 {
@@ -11,6 +12,7 @@ namespace BookCatalogue.Data.Entity
         public string Title { get; set; }
         public int Pages { get; set; }
         public int Rating { get; set; }
+        public DateTime PublishedDate { get; set; }
 
         [Write(false)]
         public IEnumerable<AuthorEM> Authors { get; set; }
