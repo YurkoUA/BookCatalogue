@@ -43,10 +43,12 @@ namespace BookCatalogue.Data.Repositories
             return _Get("USP_Book_Get", parameters).FirstOrDefault();
         }
 
-        public IEnumerable<BookEM> FindBook(string name)
+        public IEnumerable<BookEM> FindBook(string name, long offset, long take)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Name", name);
+            parameters.Add("@name", name);
+            parameters.Add("@offset", offset);
+            parameters.Add("@take", take);
 
             return _Get("USP_Book_Find", parameters);
         }

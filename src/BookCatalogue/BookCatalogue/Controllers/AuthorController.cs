@@ -39,7 +39,7 @@ namespace BookCatalogue.Controllers
         [HttpGet("Find")]
         public IActionResult Find([FromQuery]SearchVM search)
         {
-            return Ok(authorService.FindAuthor(search.Expression));
+            return Ok(authorService.FindAuthor(search.Expression, search.Offset, search.Take));
         }
 
         [HttpPost]

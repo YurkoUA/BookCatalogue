@@ -7,7 +7,7 @@ namespace BookCatalogue.Infrastructure.Services
     {
         IEnumerable<BookDetailsVM> GetAllBooks(long offset, long take);
         IEnumerable<BookDetailsVM> GetByAuthor(long authorId, long offset, long take);
-        IEnumerable<BookDetailsVM> FindBook(string name);
+        IEnumerable<BookDetailsVM> FindBook(string name, long offset, long take);
         BookDetailsVM GetBook(long id);
 
         long CreateBook(BookCreateVM book);

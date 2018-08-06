@@ -7,7 +7,7 @@ namespace BookCatalogue.Infrastructure.Repositories
     {
         IEnumerable<AuthorEM> GetAllAuthors(long offset, long take);
         AuthorEM GetAuthor(long id);
-        IEnumerable<AuthorEM> FindAuthor(string name);
+        IEnumerable<AuthorEM> FindAuthor(string name, long offset, long take);
 
         long CreateAuthor(AuthorEM author);
         void EditAuthor(AuthorEM author);

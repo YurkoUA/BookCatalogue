@@ -45,7 +45,7 @@ namespace BookCatalogue.Controllers
         [HttpGet("Find")]
         public IActionResult Find([FromQuery]SearchVM search)
         {
-            return Ok(bookService.FindBook(search.Expression));
+            return Ok(bookService.FindBook(search.Expression, search.Offset, search.Take));
         }
 
         [HttpPost]

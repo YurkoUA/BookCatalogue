@@ -30,9 +30,9 @@ namespace BookCatalogue.Business.Services
             return mapper.ConvertCollectionTo<BookDetailsVM>(booksEM);
         }
 
-        public IEnumerable<BookDetailsVM> FindBook(string name)
+        public IEnumerable<BookDetailsVM> FindBook(string name, long offset, long take)
         {
-            var booksEM = bookRepository.FindBook(name);
+            var booksEM = bookRepository.FindBook(name, offset, take);
             return mapper.ConvertCollectionTo<BookDetailsVM>(booksEM);
         }
 

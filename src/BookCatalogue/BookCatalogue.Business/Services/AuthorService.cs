@@ -24,9 +24,9 @@ namespace BookCatalogue.Business.Services
             return mapper.ConvertCollectionTo<BaseAuthorVM>(authorsEM);
         }
 
-        public IEnumerable<BaseAuthorVM> FindAuthor(string name)
+        public IEnumerable<BaseAuthorVM> FindAuthor(string name, long offset, long take)
         {
-            var authorsEM = authorRepository.FindAuthor(name);
+            var authorsEM = authorRepository.FindAuthor(name, offset, take);
             return mapper.ConvertCollectionTo<BaseAuthorVM>(authorsEM);
         }
 
