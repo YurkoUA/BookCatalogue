@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Config } from "../config/config";
 import { AlertController } from "@ionic/angular";
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
+import { Observable, ObservableInput } from 'rxjs';
 
 
 @Injectable()
@@ -12,12 +12,15 @@ export class BaseApiService {
                 public alertCtrl: AlertController) {
     }
 
-    extractData<T>(resp: HttpResponse<T>) {
-        return resp.body != null ? resp.body : {};
+    protected get baseUrl(): string {
+        return "";
     }
 
-    handleError(error: Response | any) {
+    extractData(value: any) {
+        return value;
+    }
 
-        return Observable.empty();
+    handleError(error: any, caught: Observable<any>): any {
+        return {};
     }
 }

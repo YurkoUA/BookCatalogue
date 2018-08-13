@@ -1,33 +1,27 @@
 import { Injectable } from "@angular/core";
 import { BaseApiService } from "./base-api.service";
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/empty';
+import { Observable } from 'rxjs';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class BaseRestApiService extends BaseApiService {
-    get<T>(url: string, params: any): Observable<T> {
-        return this.http.get<T>(url, { params: params })
-            .map(this.extractData)
-            .catch(err => this.handleError(err));
+    get<T>(url: string, params?: any): Observable<T> {
+        return this.http.get<T>(this.baseUrl + url, { params: params })
+            .pipe(map(this.extractData), catchError(this.handleError));
     }
 
-    post<T>(url: string, data: T, params: any): Observable<T> {
-        return this.http.post<T>(url, data, { params: params })
-            .map(this.extractData)
-            .catch(err => this.handleError(err));
+    post<TData, TReturn>(url: string, data: TData, params?: any): Observable<TReturn> {
+        return this.http.post<TData>(this.baseUrl + url, data, { params: params })
+        .pipe(map(this.extractData), catchError(this.handleError));
     }
 
-    update<T>(url: string, data: T, params: any): Observable<boolean> {
-        return this.http.put<boolean>(url, data, { params: params })
-            .map(this.extractData)
-            .catch(err => this.handleError(err));
+    put<T>(url: string, data: T, params?: any): Observable<boolean> {
+        return this.http.put<boolean>(this.baseUrl + url, data, { params: params })
+        .pipe(map(this.extractData), catchError(this.handleError));
     }
 
-    delete(url: string, params: any): Observable<boolean> {
-        return this.http.delete<boolean>(url, { params: params })
-            .map(this.extractData)
-            .catch(err => this.handleError(err));
+    delete(url: string, params?: any): Observable<boolean> {
+        return this.http.delete<boolean>(this.baseUrl + url, { params: params })
+        .pipe(map(this.extractData), catchError(this.handleError));
     }
 }
