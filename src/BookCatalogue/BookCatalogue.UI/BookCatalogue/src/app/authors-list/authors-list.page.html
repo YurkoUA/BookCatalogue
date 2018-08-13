@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>authors-list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="authorsList.length > 0">
+    <ion-item *ngFor="let a of authorsList">
+      <ion-thumbnail item-start>
+        <img>
+      </ion-thumbnail>
+
+      <h2>{{a.Name}}</h2>
+
+      <p *ngIf="a.BooksCount > 0">Books: {{a.BooksCount}}</p>
+      <p *ngIf="a.BooksCount < 1">No books</p>
+    </ion-item>
+
+    <scrolling (scroll)="loadAuthors()"></scrolling>
+  </ion-list>
+
+  <p *ngIf="authorsList.length < 1">
+    No authors.
+  </p>
+</ion-content>

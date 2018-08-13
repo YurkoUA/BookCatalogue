@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { BaseRestApiService } from "../core/api/base-rest.api-service";
 import { Observable } from "rxjs";
 import { Author } from "../models/author";
+import { PagingModel } from "../models/paging.model";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
-    getAllAuthors(): Observable<Author[]> {
-        return this.get('api/author');
+    getAllAuthors(paging: PagingModel): Observable<Author[]> {
+        return this.get('api/author', paging);
     }
 
     getAuthorById(id: number): Observable<Author> {
