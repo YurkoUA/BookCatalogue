@@ -19,7 +19,7 @@ export class BaseRestApiService extends BaseApiService {
         this.spinnerService.show();
 
         return this.http.get(this.baseUrl + url, { params: params, observe: 'response' })
-            .map(this.extractData)
+            .map(resp => this.extractData(resp))
             .catch(err => this.handleError(err));
     }
 
@@ -27,7 +27,7 @@ export class BaseRestApiService extends BaseApiService {
         this.spinnerService.show();
         
         return this.http.post(this.baseUrl + url, data, { params: params, observe: 'response' })
-            .map(this.extractData)
+            .map(resp => this.extractData(resp))
             .catch(err => this.handleError(err));
     }
 
@@ -35,7 +35,7 @@ export class BaseRestApiService extends BaseApiService {
         this.spinnerService.show();
         
         return this.http.put(this.baseUrl + url, data, { params: params, observe: 'response' })
-            .map(this.extractData)
+            .map(resp => this.extractData(resp))
             .catch(err => this.handleError(err));
     }
 
@@ -43,7 +43,7 @@ export class BaseRestApiService extends BaseApiService {
         this.spinnerService.show();
         
         return this.http.delete(this.baseUrl + url, { params: params, observe: 'response' })
-            .map(this.extractData)
+            .map(resp => this.extractData(resp))
             .catch(err => this.handleError(err));
     }
 }

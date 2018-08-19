@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthorDetailsPage } from '../pages/author-details/author-details';
 import { BookDetailsPage } from '../pages/book-details/book-details';
 import { RatingComponent } from '../components/rating/rating';
+import { AuthorCreatePage } from '../pages/author-create/author-create';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RatingComponent } from '../components/rating/rating';
 
     AuthorsListPage,
     AuthorDetailsPage,
+    AuthorCreatePage,
 
     BookDetailsPage
   ],
@@ -42,6 +44,7 @@ import { RatingComponent } from '../components/rating/rating';
 
     AuthorsListPage,
     AuthorDetailsPage,
+    AuthorCreatePage,
 
     BookDetailsPage,
 

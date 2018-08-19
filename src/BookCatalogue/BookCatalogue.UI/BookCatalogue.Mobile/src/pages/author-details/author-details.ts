@@ -7,6 +7,7 @@ import { Book } from '../../models/book';
 import { BookService } from '../../services/book.service';
 import { PagingModel } from '../../models/paging.model';
 import { BookDetailsPage } from '../book-details/book-details';
+import { AuthorCreatePage } from '../author-create/author-create';
 
 @IonicPage()
 @Component({
@@ -39,10 +40,20 @@ export class AuthorDetailsPage extends BasePage {
 
   loadBooks(paging?: PagingModel) {
     this.bookService.getBooksByAuthor(this.author.Id, paging)
-      .subscribe(b => this.books = this.books.concat(b));
+      .subscribe(b => {
+        this.books = this.books.concat(b);
+        
+        if (paging != undefined) {
+          paging.update();
+        }
+      });
   }
 
   openBookDetails(id: number) {
     this.navigateTo(BookDetailsPage, { id: id });
+  }
+
+  openAuthorEditForm() {
+    this.navigateTo(AuthorCreatePage, { id: this.author.Id });
   }
 }

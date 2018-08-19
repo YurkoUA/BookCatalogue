@@ -12,7 +12,7 @@ export class SpinnerService {
     show() {
         if (this.spinner == undefined) {
             this.spinner = this.loadCtrl.create({
-                content: "Please, wait..."
+                content: "Please wait..."
             });
 
             this.spinner.present();

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ isNewAuthor ? 'Create a new author' : authorMomento.Name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form #authorForm="ngForm">
+    <ion-item>
+      <ion-label>Author Name</ion-label>
+      <ion-input name="Name" #Name="ngModel" [(ngModel)]="author.Name" required minlength="3" maxlength="64"></ion-input>
+    </ion-item>
+    <span *ngIf="Name.invalid && Name.touched">The Name is required and must be a string from 3 to 64 symbols.</span>
+
+    <ion-row>
+      <ion-col>
+        <button color="positive" ion-button block icon-start (click)="formSubmit()">
+          <ion-icon name="create"></ion-icon>
+          {{ isNewAuthor ? 'Create' : 'Save Changes' }}
+        </button>
+      </ion-col>
+
+      <ion-col>
+        <button color="danger" ion-button block icon-start (click)="cancel()">
+          <ion-icon name="close-circle"></ion-icon>
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

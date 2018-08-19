@@ -31,7 +31,7 @@ export class BaseApiService {
         } else if (resp.status == 400) {
             let errorsArray = resp.body as string[];
 
-            if (errorsArray.length > 0) {
+            if (errorsArray != undefined && errorsArray.length > 0) {
                 message = errorsArray.join('\n');
             }
         }

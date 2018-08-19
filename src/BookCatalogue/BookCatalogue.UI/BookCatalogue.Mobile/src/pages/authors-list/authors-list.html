@@ -23,4 +23,9 @@
   <p *ngIf="authorsList.length < 1">
     No authors.
   </p>
+
+  <button color="positive" ion-button block icon-start (click)="openCreateForm()">
+    <ion-icon name="create"></ion-icon>
+    Add author
+  </button>
 </ion-content>

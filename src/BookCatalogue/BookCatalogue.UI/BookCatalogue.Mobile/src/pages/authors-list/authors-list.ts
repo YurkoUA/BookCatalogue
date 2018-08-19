@@ -5,6 +5,7 @@ import { Author } from '../../models/author';
 import { AuthorService } from '../../services/author.service';
 import { BasePage } from '../base-page';
 import { AuthorDetailsPage } from '../author-details/author-details';
+import { AuthorCreatePage } from '../author-create/author-create';
 
 @IonicPage()
 @Component({
@@ -29,10 +30,15 @@ export class AuthorsListPage extends BasePage {
     this.authorService.getAllAuthors(this.pagingModel)
       .subscribe(authors => {
         this.authorsList = this.authorsList.concat(authors);
+        this.pagingModel.update();
       });
   }
 
   openDetails(id: number) {
     this.navigateTo(AuthorDetailsPage, { id: id });
+  }
+
+  openCreateForm() {
+    this.navigateTo(AuthorCreatePage);
   }
 }
