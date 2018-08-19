@@ -4,11 +4,13 @@ import { HttpClient } from "@angular/common/http";
 import { PagingModel } from "../models/paging.model";
 import { Observable } from "rxjs/Observable";
 import { Book } from "../models/book";
+import { AlertController } from "ionic-angular";
+import { SpinnerService } from "./spinner.service";
 
 @Injectable()
 export class BookService extends BaseRestApiService { 
-    constructor(public http: HttpClient) {
-        super(http);
+    constructor(http: HttpClient, alertCtrl: AlertController, spinnerService: SpinnerService) {
+        super(http, alertCtrl, spinnerService);
     }
 
     getAllBooks(paging?: PagingModel): Observable<Book[]> {

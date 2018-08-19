@@ -4,11 +4,13 @@ import { Author } from "../models/author";
 import { PagingModel } from "../models/paging.model";
 import { BaseRestApiService } from "../core/api/base-rest-api.service";
 import { HttpClient } from "@angular/common/http";
+import { AlertController } from "ionic-angular";
+import { SpinnerService } from "./spinner.service";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
-    constructor(public http: HttpClient) {
-        super(http);
+    constructor(http: HttpClient, alertCtrl: AlertController, spinnerService: SpinnerService) {
+        super(http, alertCtrl, spinnerService);
     }
 
     getAllAuthors(paging?: PagingModel): Observable<Author[]> {
