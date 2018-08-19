@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,6 +12,8 @@ import { ServiceModule } from '../services/service.module';
 import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthorDetailsPage } from '../pages/author-details/author-details';
+import { BookDetailsPage } from '../pages/book-details/book-details';
+import { RatingComponent } from '../components/rating/rating';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AuthorDetailsPage } from '../pages/author-details/author-details';
     HomePage,
 
     AuthorsListPage,
-    AuthorDetailsPage
+    AuthorDetailsPage,
+
+    BookDetailsPage
   ],
   imports: [
     ServiceModule,
@@ -37,7 +41,11 @@ import { AuthorDetailsPage } from '../pages/author-details/author-details';
     HomePage,
 
     AuthorsListPage,
-    AuthorDetailsPage
+    AuthorDetailsPage,
+
+    BookDetailsPage,
+
+    RatingComponent
   ],
   providers: [
     StatusBar,
@@ -45,7 +53,8 @@ import { AuthorDetailsPage } from '../pages/author-details/author-details';
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ],
   schemas: [
-    NO_ERRORS_SCHEMA
+    NO_ERRORS_SCHEMA,
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AppModule {}

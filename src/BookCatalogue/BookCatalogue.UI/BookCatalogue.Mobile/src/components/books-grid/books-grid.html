@@ -1,0 +1,10 @@
+<ion-list *ngIf="books.length > 0">
+  <ion-item  *ngFor="let b of books" (click)="onClick(b.Id)">
+    <h2><strong>{{b.Title}}</strong></h2>
+
+    <h3>Pages: {{b.Pages}}</h3>
+    <h3>Published: {{b.PublishedDate | date: 'fullDate' }}</h3>
+
+    <rating [rating]="b.Rating"></rating>
+  </ion-item>
+</ion-list>

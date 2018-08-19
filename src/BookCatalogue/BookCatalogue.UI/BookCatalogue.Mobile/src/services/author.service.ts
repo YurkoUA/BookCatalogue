@@ -11,7 +11,7 @@ export class AuthorService extends BaseRestApiService {
         super(http);
     }
 
-    getAllAuthors(paging: PagingModel): Observable<Author[]> {
+    getAllAuthors(paging?: PagingModel): Observable<Author[]> {
         return this.get('api/author', paging);
     }
 

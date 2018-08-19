@@ -12,7 +12,7 @@ export class BaseRestApiService extends BaseApiService {
 
     get<T>(url: string, params?: any): Observable<T> {
         if (params.id)
-            url += `/${params.id}/`
+            url += `/${params.id}/`;
 
         return this.http.get(this.baseUrl + url, { params: params })
             .map(this.extractData)
