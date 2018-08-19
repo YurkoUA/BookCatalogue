@@ -45,6 +45,17 @@ namespace BookCatalogue
                     opt.SerializerSettings.Formatting = Formatting.Indented;
 #endif
                 });
+
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("AllowAllOrigin", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +71,7 @@ namespace BookCatalogue
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAllOrigin");
             app.UseMvc();
         }
     }

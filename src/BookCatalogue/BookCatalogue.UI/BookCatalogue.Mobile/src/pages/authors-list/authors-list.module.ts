@@ -4,10 +4,10 @@ import { AuthorsListPage } from './authors-list';
 
 @NgModule({
   declarations: [
-    AuthorsListPage,
+    AuthorsListPage
   ],
   imports: [
-    IonicPageModule.forChild(AuthorsListPage),
+    IonicPageModule.forChild(AuthorsListPage)
   ],
 })
 export class AuthorsListPageModule {}

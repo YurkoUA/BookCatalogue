@@ -3,9 +3,14 @@ import { Observable } from "rxjs";
 import { Author } from "../models/author";
 import { PagingModel } from "../models/paging.model";
 import { BaseRestApiService } from "../core/api/base-rest-api.service";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
+    constructor(public http: HttpClient) {
+        super(http);
+    }
+
     getAllAuthors(paging: PagingModel): Observable<Author[]> {
         return this.get('api/author', paging);
     }

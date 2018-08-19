@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+src/BookCatalogue/BookCatalogue.UI/BookCatalogue.Mobile/www/build/
+src/BookCatalogue/BookCatalogue.UI/BookCatalogue.Mobile/.sourcemaps/

@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Observable, ObservableInput } from 'rxjs/Observable';
+import { baseUrl } from "../../app/app.config";
 import { AlertController } from "ionic-angular";
+import { HttpClient } from "@angular/common/http";
 
 export class BaseApiService {
-    constructor(public http: HttpClient,
-                public alertCtrl: AlertController) {
+    constructor(public http: HttpClient) {
     }
 
     protected get baseUrl(): string {
-        return "";
+        return baseUrl;
     }
 
     extractData(resp: Response): any {
-        return resp.body;
+        return resp;
     }
 
     handleError(error: any): any {

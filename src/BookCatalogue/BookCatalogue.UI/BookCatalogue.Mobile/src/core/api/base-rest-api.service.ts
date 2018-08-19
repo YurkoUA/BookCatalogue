@@ -3,8 +3,13 @@ import { BaseApiService } from "./base-api.service";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { HttpClient } from "@angular/common/http";
 
 export class BaseRestApiService extends BaseApiService {
+    constructor(public http: HttpClient) {
+        super(http);
+    }
+
     get<T>(url: string, params?: any): Observable<T> {
         return this.http.get(this.baseUrl + url, { params: params })
             .map(this.extractData)
