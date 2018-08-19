@@ -30,7 +30,7 @@ namespace BookCatalogue.Controllers
             return Ok(bookService.GetAllBooks(paging.Offset, paging.Take));
         }
 
-        [HttpGet("{id?}")]
+        [HttpGet("{id}")]
         public IActionResult GetBook(int id)
         {
             return Ok(bookService.GetBook(id));

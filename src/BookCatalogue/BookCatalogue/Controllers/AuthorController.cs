@@ -30,7 +30,7 @@ namespace BookCatalogue.Controllers
             return Ok(authorService.GetAllAuthors(paging.Offset, paging.Take));
         }
 
-        [HttpGet("{id?}")]
+        [HttpGet("{id}")]
         public IActionResult GetAuthor(long id)
         {
             return Ok(authorService.GetAuthor(id));

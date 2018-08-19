@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list *ngIf="authorsList.length > 0">
-    <ion-item *ngFor="let a of authorsList">
+    <ion-item *ngFor="let a of authorsList" (click)="openDetails(a.Id)">
       <ion-thumbnail item-start>
         <img src="assets/imgs/profile-default.png">
       </ion-thumbnail>

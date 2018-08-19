@@ -11,12 +11,15 @@ import { ComponentsModule } from '../components/components.module';
 import { ServiceModule } from '../services/service.module';
 import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthorDetailsPage } from '../pages/author-details/author-details';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AuthorsListPage
+
+    AuthorsListPage,
+    AuthorDetailsPage
   ],
   imports: [
     ServiceModule,
@@ -32,7 +35,9 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     HomePage,
-    AuthorsListPage
+
+    AuthorsListPage,
+    AuthorDetailsPage
   ],
   providers: [
     StatusBar,
