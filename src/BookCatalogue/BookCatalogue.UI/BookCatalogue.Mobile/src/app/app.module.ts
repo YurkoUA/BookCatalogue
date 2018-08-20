@@ -15,6 +15,8 @@ import { AuthorDetailsPage } from '../pages/author-details/author-details';
 import { BookDetailsPage } from '../pages/book-details/book-details';
 import { RatingComponent } from '../components/rating/rating';
 import { AuthorCreatePage } from '../pages/author-create/author-create';
+import { MenuPage } from '../pages/menu/menu';
+import { BooksListPage } from '../pages/books-list/books-list';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AuthorCreatePage } from '../pages/author-create/author-create';
     AuthorsListPage,
     AuthorDetailsPage,
     AuthorCreatePage,
+    MenuPage,
 
+    BooksListPage,
     BookDetailsPage
   ],
   imports: [
@@ -41,11 +45,13 @@ import { AuthorCreatePage } from '../pages/author-create/author-create';
   entryComponents: [
     MyApp,
     HomePage,
+    MenuPage,
 
     AuthorsListPage,
     AuthorDetailsPage,
     AuthorCreatePage,
 
+    BooksListPage,
     BookDetailsPage,
 
     RatingComponent

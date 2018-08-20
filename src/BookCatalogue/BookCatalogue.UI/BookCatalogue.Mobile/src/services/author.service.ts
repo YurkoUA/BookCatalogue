@@ -26,10 +26,10 @@ export class AuthorService extends BaseRestApiService {
     }
 
     editAuthor(id: number, author: Author): Observable<boolean> {
-        return this.put('api/author', author, { id: id });
+        return this.put('api/author/' + id, author);
     }
 
     deleteAuthor(id: number): Observable<boolean> {
-        return this.delete('api/author', { id: id });
+        return this.delete('api/author/' + id);
     }
 }

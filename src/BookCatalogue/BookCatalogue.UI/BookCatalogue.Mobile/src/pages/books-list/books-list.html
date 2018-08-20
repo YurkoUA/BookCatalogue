@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Books</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <books-grid [books]="books" (scrolling)="loadBooks($event)" (clicked)="openBookDetails($event)"></books-grid>
+</ion-content>
