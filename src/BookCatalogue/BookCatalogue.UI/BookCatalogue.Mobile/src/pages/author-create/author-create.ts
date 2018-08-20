@@ -7,6 +7,7 @@ import { isNumber } from 'ionic-angular/util/util';
 import { NgForm } from '@angular/forms';
 import { AuthorsListPage } from '../authors-list/authors-list';
 import { AuthorDetailsPage } from '../author-details/author-details';
+import { AuthorCreateModel } from '../../models/author.create.model';
 
 @IonicPage()
 @Component({
@@ -17,11 +18,11 @@ export class AuthorCreatePage extends BasePage {
   @ViewChild('authorForm')
   authorForm: NgForm;
   
-  author: Author = new Author();
-  authorMomento: Author;
+  author: AuthorCreateModel = new AuthorCreateModel();
+  authorMomento: Author = new Author();
   
   get isNewAuthor(): boolean {
-    return this.author.Id == undefined;
+    return this.authorMomento.Id == undefined;
   }
 
   constructor(public navCtrl: NavController, 
@@ -40,8 +41,8 @@ export class AuthorCreatePage extends BasePage {
   loadAuthor(id: number) {
     this.authorService.getAuthorById(id)
       .subscribe(a => {
-        this.author = a;
-        this.authorMomento = Object.assign({}, this.author);
+        this.author.Name = a.Name;
+        this.authorMomento = Object.assign({}, a);
       });
   }
 
@@ -56,10 +57,10 @@ export class AuthorCreatePage extends BasePage {
           this.navCtrl.setRoot(AuthorDetailsPage, { id: id });
         });
     } else {
-      this.authorService.editAuthor(this.author.Id, this.author)
+      this.authorService.editAuthor(this.authorMomento.Id, this.author)
         .subscribe(b => {
           this.showAlert('The author has been updated successfully!');
-          this.navCtrl.setRoot(AuthorDetailsPage, { id: this.author.Id });
+          this.navCtrl.setRoot(AuthorDetailsPage, { id: this.authorMomento.Id });
         });
     }
   }
@@ -68,7 +69,7 @@ export class AuthorCreatePage extends BasePage {
     if (this.isNewAuthor) {
        this.navigateTo(AuthorsListPage);
     } else {
-      this.navigateTo(AuthorDetailsPage, { id: this.author.Id });
+      this.navigateTo(AuthorDetailsPage, { id: this.authorMomento.Id });
     }
   }
 

@@ -6,6 +6,7 @@ import { BaseRestApiService } from "../core/api/base-rest-api.service";
 import { HttpClient } from "@angular/common/http";
 import { AlertController } from "ionic-angular";
 import { SpinnerService } from "./spinner.service";
+import { AuthorCreateModel } from "../models/author.create.model";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
@@ -21,11 +22,11 @@ export class AuthorService extends BaseRestApiService {
         return this.get('api/author', { id: id });
     }
 
-    createAuthor(author: Author): Observable<number> {
-        return this.post<Author, number>('api/author', author);
+    createAuthor(author: AuthorCreateModel): Observable<number> {
+        return this.post<AuthorCreateModel, number>('api/author', author);
     }
 
-    editAuthor(id: number, author: Author): Observable<boolean> {
+    editAuthor(id: number, author: AuthorCreateModel): Observable<boolean> {
         return this.put('api/author/' + id, author);
     }
 
