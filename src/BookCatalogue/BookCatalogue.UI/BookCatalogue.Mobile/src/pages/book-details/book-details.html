@@ -34,8 +34,19 @@
     </ul>
   </div>
 
-  <button color="positive" ion-button block icon-start (click)="openBookEditForm()">
-    <ion-icon name="create"></ion-icon>
-    Edit book
-  </button>
+  <ion-row>
+    <ion-col>
+      <button color="positive" ion-button block icon-start (click)="openBookEditForm()">
+        <ion-icon name="create"></ion-icon>
+          Edit book
+      </button>
+    </ion-col>
+
+    <ion-col>
+      <button color="danger" ion-button block icon-start (click)="deleteBookConfirm()">
+        <ion-icon name="close-circle"></ion-icon>
+          Delete
+      </button>
+    </ion-col>
+  </ion-row>
 </ion-content>

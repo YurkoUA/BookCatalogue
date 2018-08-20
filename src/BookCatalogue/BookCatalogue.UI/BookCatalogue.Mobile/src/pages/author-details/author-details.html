@@ -26,10 +26,21 @@
     </ion-item-group>
   </div>
 
-  <button color="positive" ion-button block icon-start (click)="openAuthorEditForm()">
-      <ion-icon name="create"></ion-icon>
-      Edit author
-  </button>
+  <ion-row>
+    <ion-col>
+      <button color="positive" ion-button block icon-start (click)="openAuthorEditForm()">
+        <ion-icon name="create"></ion-icon>
+          Edit author
+      </button>
+    </ion-col>
+
+    <ion-col>
+      <button color="danger" ion-button block icon-start [disabled]="author.BooksCount > 0" (click)="deleteAuthorConfirm()">
+        <ion-icon name="close-circle"></ion-icon>
+          Delete
+      </button>
+    </ion-col>
+  </ion-row>
 
   <div *ngIf="author.BooksCount > 0">
     <h4>Books:</h4>

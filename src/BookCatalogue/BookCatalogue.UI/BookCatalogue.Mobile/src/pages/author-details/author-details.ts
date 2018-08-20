@@ -8,6 +8,7 @@ import { BookService } from '../../services/book.service';
 import { PagingModel } from '../../models/paging.model';
 import { BookDetailsPage } from '../book-details/book-details';
 import { AuthorCreatePage } from '../author-create/author-create';
+import { AuthorsListPage } from '../authors-list/authors-list';
 
 @IonicPage()
 @Component({
@@ -56,5 +57,27 @@ export class AuthorDetailsPage extends BasePage {
 
   openAuthorEditForm() {
     this.navigateTo(AuthorCreatePage, { id: this.author.Id });
+  }
+
+  deleteAuthorConfirm() {
+    this.alertCtrl.create({
+      title: 'Delete the author',
+      message: 'Do you really want to delete this author?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => this.deleteAuthor()
+        },
+        { text: 'No' }
+      ]
+    }).present();
+  }
+
+  deleteAuthor() {
+    this.authorService.deleteAuthor(this.author.Id)
+      .subscribe(b => {
+        this.showAlert('The author has been deleted successfully!');
+        this.navCtrl.setRoot(AuthorsListPage);
+      });
   }
 }

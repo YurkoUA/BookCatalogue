@@ -4,6 +4,7 @@ import { BasePage } from '../base-page';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { BookCreatePage } from '../book-create/book-create';
+import { BooksListPage } from '../books-list/books-list';
 
 @IonicPage()
 @Component({
@@ -31,5 +32,27 @@ export class BookDetailsPage extends BasePage {
 
   openBookEditForm() {
     this.navigateTo(BookCreatePage, { id: this.book.Id });
+  }
+
+  deleteBookConfirm() {
+    this.alertCtrl.create({
+      title: 'Delete the book',
+      message: 'Do you really want to delete this book?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => this.deleteBook()
+        },
+        { text: 'No' }
+      ]
+    }).present();
+  }
+
+  deleteBook() {
+    this.bookService.deleteBook(this.book.Id)
+      .subscribe(b => {
+        this.showAlert('The book has been deleted successfully!');
+        this.navCtrl.setRoot(BooksListPage);
+      });
   }
 }

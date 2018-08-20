@@ -16,12 +16,12 @@ export class BaseApiService {
         return baseUrl;
     }
 
-    extractData<T>(resp: HttpResponse<T>): any {
+    protected extractData<T>(resp: HttpResponse<T>): any {
         this.spinnerService.hide();
         return resp.body;
     }
 
-    handleError<T>(resp: HttpResponse<T> | any): any {
+    protected handleError<T>(resp: HttpResponse<T> | any): any {
         this.spinnerService.hide();
 
         let message: string = "Something happened. Try again, please!";
@@ -40,7 +40,7 @@ export class BaseApiService {
         return new EmptyObservable();
     }
 
-    showAlert(message: string) {
+    protected showAlert(message: string) {
         this.alertCtrl.create({
             subTitle: message,
             buttons: ['OK']
