@@ -1,4 +1,3 @@
-import { Injectable } from "@angular/core";
 import { BaseApiService } from "./base-api.service";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -27,7 +26,7 @@ export class BaseRestApiService extends BaseApiService {
         this.spinnerService.show();
         
         return this.http.post(this.baseUrl + url, data, { params: params, observe: 'response' })
-            .map(resp => this.extractData(resp))
+            .map(resp => this.extractData(resp).Id)
             .catch(err => this.handleError(err));
     }
 

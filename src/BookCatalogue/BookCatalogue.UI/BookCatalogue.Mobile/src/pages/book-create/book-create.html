@@ -31,9 +31,11 @@
     <ion-item>
       <ion-label>Authors</ion-label>
 
-      <ion-select name="Authors" #Authors="ngModel" [(ngModel)]="authors" multiple="true">
-        <ion-option *ngFor="let a of authors" [value]="a.Id" [selected]="book.AuthorsIds.indexOf(a.Id) > -1"
-          (ionSelect)="authorSelected()">{{ a.Name }}</ion-option>
+      <ion-select name="Authors" #Authors="ngModel" [(ngModel)]="book.AuthorsIds" multiple="true">
+
+        <ion-option *ngFor="let a of authors" [value]="a.Id" [selected]="book.AuthorsIds.indexOf(a.Id) > -1">
+          {{ a.Name }}
+        </ion-option>
       </ion-select>
 
       <span *ngIf="Authors.length == 0 && Authors.touched">There must be at least 1 author.</span>

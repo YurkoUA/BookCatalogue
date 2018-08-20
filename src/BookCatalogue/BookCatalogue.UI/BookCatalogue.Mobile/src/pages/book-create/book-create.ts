@@ -85,8 +85,4 @@ export class BookCreatePage extends BasePage {
       this.navigateTo(BookDetailsPage, { id: this.bookMomento.Id });
     }
   }
-
-  authorSelected(obj: any) {
-    alert(obj);
-  }
 }
