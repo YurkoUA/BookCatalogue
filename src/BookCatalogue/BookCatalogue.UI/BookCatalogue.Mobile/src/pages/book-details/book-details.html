@@ -33,4 +33,9 @@
       <li *ngFor="let a of book.Authors">{{a.Name}}</li>
     </ul>
   </div>
+
+  <button color="positive" ion-button block icon-start (click)="openBookEditForm()">
+    <ion-icon name="create"></ion-icon>
+    Edit book
+  </button>
 </ion-content>

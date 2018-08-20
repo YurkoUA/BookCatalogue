@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ isNewBook ? 'Create a book' : bookMomento.Title }}</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <p *ngIf="authors.length == 0">
+    You can't create a book, because there are no authors.
+  </p>
+
+  <form #bookForm="ngForm" *ngIf="authors.length > 0">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input name="Title" #Title="ngModel" [(ngModel)]="book.Title" required minlength="3" maxlength="64"></ion-input>
+    </ion-item>
+    <span *ngIf="Title.invalid && Title.touched">The Title is required and must be a string from 3 to 64 symbols.</span>
+
+    <ion-item>
+      <ion-label>Pages</ion-label>
+      <ion-input type="number" name="Pages" #Pages="ngModel" [(ngModel)]="book.Pages" required min="1"></ion-input>
+    </ion-item>
+    <span *ngIf="Pages.invalid && Pages.touched">The Pages field is required and must be a number more than 0.</span>
+
+    <ion-item>
+      <ion-label>Published Date</ion-label>
+      <ion-datetime name="PublishedDate" #PublishedDate="ngModel" [(ngModel)]="book.PublishedDate" required></ion-datetime>
+    </ion-item>
+    <span *ngIf="PublishedDate.invalid && PublishedDate.touched">The Published Date field is required.</span>
+
+    <ion-item>
+      <ion-label>Authors</ion-label>
+
+      <ion-select name="Authors" #Authors="ngModel" [(ngModel)]="authors" multiple="true">
+        <ion-option *ngFor="let a of authors" [value]="a.Id" [selected]="book.AuthorsIds.indexOf(a.Id) > -1"
+          (ionSelect)="authorSelected()">{{ a.Name }}</ion-option>
+      </ion-select>
+
+      <span *ngIf="Authors.length == 0 && Authors.touched">There must be at least 1 author.</span>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <button color="positive" ion-button block icon-start (click)="formSubmit()">
+          <ion-icon name="create"></ion-icon>
+          {{ isNewBook ? 'Create' : 'Save Changes' }}
+        </button>
+      </ion-col>
+
+      <ion-col>
+        <button color="danger" ion-button block icon-start (click)="cancel()">
+          <ion-icon name="close-circle"></ion-icon>
+          Cancel
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

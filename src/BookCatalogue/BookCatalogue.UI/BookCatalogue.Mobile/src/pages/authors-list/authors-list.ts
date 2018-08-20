@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { PagingModel } from '../../models/paging.model';
 import { Author } from '../../models/author';
 import { AuthorService } from '../../services/author.service';
@@ -16,10 +16,11 @@ export class AuthorsListPage extends BasePage {
   pagingModel: PagingModel = new PagingModel();
   authorsList: Author[] = [];
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(navCtrl: NavController,
+              navParams: NavParams,
+              alertCtrl: AlertController,
               private authorService: AuthorService) {
-                super(navCtrl, navParams);
+                super(navCtrl, navParams, alertCtrl);
 }
 
   ngOnInit() {

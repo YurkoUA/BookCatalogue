@@ -11,7 +11,7 @@ import { AuthorCreateModel } from '../../models/author.create.model';
 
 @IonicPage()
 @Component({
-  selector: 'page-author-create',
+  selector: 'page-author-create', 
   templateUrl: 'author-create.html',
 })
 export class AuthorCreatePage extends BasePage {
@@ -25,11 +25,11 @@ export class AuthorCreatePage extends BasePage {
     return this.authorMomento.Id == undefined;
   }
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private alertCtrl: AlertController,
+  constructor(navCtrl: NavController, 
+              navParams: NavParams,
+              alertCtrl: AlertController,
               private authorService: AuthorService) {
-      super(navCtrl, navParams);
+      super(navCtrl, navParams, alertCtrl);
 
       let id: number = navParams.get('id');
 
@@ -67,16 +67,9 @@ export class AuthorCreatePage extends BasePage {
 
   cancel() {
     if (this.isNewAuthor) {
-       this.navigateTo(AuthorsListPage);
+      this.navigateTo(AuthorsListPage);
     } else {
       this.navigateTo(AuthorDetailsPage, { id: this.authorMomento.Id });
     }
-  }
-
-  showAlert(message: string) {
-    this.alertCtrl.create({
-      message: message,
-      buttons: ['OK']
-    }).present();
   }
 }

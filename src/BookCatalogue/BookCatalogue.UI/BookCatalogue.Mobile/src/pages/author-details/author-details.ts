@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { BasePage } from '../base-page';
 import { Author } from '../../models/author';
 import { AuthorService } from '../../services/author.service';
@@ -18,11 +18,12 @@ export class AuthorDetailsPage extends BasePage {
   author: Author = new Author();
   books: Book[] = [];
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams,
+  constructor(navCtrl: NavController, 
+    navParams: NavParams,
+    alertCtrl: AlertController,
     private authorService: AuthorService,
     private bookService: BookService) {
-      super(navCtrl, navParams);
+      super(navCtrl, navParams, alertCtrl);
 
       let id: number = navParams.get("id");
 

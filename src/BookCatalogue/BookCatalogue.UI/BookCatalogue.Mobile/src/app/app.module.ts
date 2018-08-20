@@ -17,6 +17,7 @@ import { RatingComponent } from '../components/rating/rating';
 import { AuthorCreatePage } from '../pages/author-create/author-create';
 import { MenuPage } from '../pages/menu/menu';
 import { BooksListPage } from '../pages/books-list/books-list';
+import { BookCreatePage } from '../pages/book-create/book-create';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BooksListPage } from '../pages/books-list/books-list';
     MenuPage,
 
     BooksListPage,
-    BookDetailsPage
+    BookDetailsPage,
+    BookCreatePage
   ],
   imports: [
     ServiceModule,
@@ -53,6 +55,7 @@ import { BooksListPage } from '../pages/books-list/books-list';
 
     BooksListPage,
     BookDetailsPage,
+    BookCreatePage,
 
     RatingComponent
   ],

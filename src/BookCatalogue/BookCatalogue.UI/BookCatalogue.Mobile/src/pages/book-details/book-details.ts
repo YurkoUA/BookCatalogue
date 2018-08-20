@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { BasePage } from '../base-page';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
+import { BookCreatePage } from '../book-create/book-create';
 
 @IonicPage()
 @Component({
@@ -12,9 +13,9 @@ import { Book } from '../../models/book';
 export class BookDetailsPage extends BasePage {
   book: Book = new Book();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(navCtrl: NavController, navParams: NavParams, alertCtrl: AlertController,
         private bookService: BookService) {
-      super(navCtrl, navParams);
+      super(navCtrl, navParams, alertCtrl);
 
       let id = navParams.get('id');
       
@@ -26,5 +27,9 @@ export class BookDetailsPage extends BasePage {
   loadBook(id: number) {
     this.bookService.getBookById(id)
       .subscribe(b => this.book = b);
+  }
+
+  openBookEditForm() {
+    this.navigateTo(BookCreatePage, { id: this.book.Id });
   }
 }
