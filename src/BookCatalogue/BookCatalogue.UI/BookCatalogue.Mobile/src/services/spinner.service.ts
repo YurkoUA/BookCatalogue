@@ -24,7 +24,7 @@ export class SpinnerService {
     hide() {
         this.counter--;
 
-        if (this.spinner != undefined && this.counter == 0) {
+        if (this.spinner != undefined && this.counter <= 0) {
             this.spinner.dismiss();
             this.spinner = undefined;
         }

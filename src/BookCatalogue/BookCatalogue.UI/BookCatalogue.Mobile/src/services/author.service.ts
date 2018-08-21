@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { AlertController } from "ionic-angular";
 import { SpinnerService } from "./spinner.service";
 import { AuthorCreateModel } from "../models/author.create.model";
+import { SearchModel } from "../models/search.model";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
@@ -15,11 +16,15 @@ export class AuthorService extends BaseRestApiService {
     }
 
     getAllAuthors(paging?: PagingModel): Observable<Author[]> {
-        return this.get('api/author', paging);
+        return this.get('api/author', { params: paging });
     }
 
     getAuthorById(id: number): Observable<Author> {
-        return this.get('api/author', { id: id });
+        return this.get('api/author', { params: { id: id } });
+    }
+
+    findAuthors(search: SearchModel) {
+        return this.get('api/Author/Find', { params: search, showLoading: false });
     }
 
     createAuthor(author: AuthorCreateModel): Observable<number> {

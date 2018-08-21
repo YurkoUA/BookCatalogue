@@ -36,7 +36,9 @@ export class AuthorDetailsPage extends BasePage {
     this.authorService.getAuthorById(id)
       .subscribe(a => {
         this.author = a;
-        this.loadBooks();
+
+        if (a.BooksCount > 0)
+          this.loadBooks();
       });
   }
 

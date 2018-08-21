@@ -7,4 +7,8 @@ export class PagingModel {
     update() {
         this.offset += PAGE_SIZE;
     }
+
+    reset() {
+        this.offset = 0;
+    }
 }

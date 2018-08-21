@@ -46,7 +46,7 @@ namespace BookCatalogue.Data.Repositories
         public IEnumerable<BookEM> FindBook(string name, long offset, long take)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@name", name);
+            parameters.Add("@title", name);
             parameters.Add("@offset", offset);
             parameters.Add("@take", take);
 

@@ -7,6 +7,7 @@ import { Book } from "../models/book";
 import { AlertController } from "ionic-angular";
 import { SpinnerService } from "./spinner.service";
 import { BookCreateModel } from "../models/book.create.model";
+import { SearchModel } from "../models/search.model";
 
 @Injectable()
 export class BookService extends BaseRestApiService { 
@@ -15,15 +16,19 @@ export class BookService extends BaseRestApiService {
     }
 
     getAllBooks(paging?: PagingModel): Observable<Book[]> {
-        return this.get('api/Book', paging);
+        return this.get('api/Book', { params: paging });
     }
 
     getBookById(id: number): Observable<Book> {
-        return this.get('api/Book', { id: id });
+        return this.get('api/Book', { params: { id: id }});
     }
 
     getBooksByAuthor(authorId: number, paging?: PagingModel): Observable<Book[]> {
-        return this.get('api/Book/ByAuthor', Object.assign({ id: authorId }, paging));
+        return this.get('api/Book/ByAuthor', { params: Object.assign({ id: authorId }, paging)});
+    }
+
+    findBook(search: SearchModel): Observable<Book[]> {
+        return this.get('api/Book/Find', { params: search, showLoading: false })
     }
 
     createBook(book: BookCreateModel): Observable<number> {

@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-  <books-grid [books]="books" (scrolling)="loadBooks($event)" (clicked)="openBookDetails($event)"></books-grid>
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  <books-grid [books]="books" [paging]="booksGridPaging" (scrolling)="loadBooks($event)" (clicked)="openBookDetails($event)"></books-grid>
 
   <button color="positive" ion-button block icon-start (click)="openCreateForm()">
     <ion-icon name="create"></ion-icon>

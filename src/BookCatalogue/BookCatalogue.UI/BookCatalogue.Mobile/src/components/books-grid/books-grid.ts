@@ -10,16 +10,17 @@ export class BooksGridComponent {
   @Input()
   books: Book[] = [];
 
+  @Input()
+  paging: PagingModel = new PagingModel();
+
   @Output()
   scrolling = new EventEmitter();
 
   @Output()
   clicked = new EventEmitter();
 
-  paging: PagingModel = new PagingModel();
-
   onScroll() {
-    this.scrolling.emit(this.paging);
+    this.scrolling.emit();
   }
 
   onClick(id: number) {
