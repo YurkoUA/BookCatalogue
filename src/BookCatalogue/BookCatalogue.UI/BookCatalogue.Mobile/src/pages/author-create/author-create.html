@@ -10,7 +10,7 @@
       <ion-label>Author Name</ion-label>
       <ion-input name="Name" #Name="ngModel" [(ngModel)]="author.Name" required minlength="3" maxlength="64"></ion-input>
     </ion-item>
-    <span *ngIf="Name.invalid && Name.touched">The Name is required and must be a string from 3 to 64 symbols.</span>
+    <span *ngIf="Name.invalid && Name.touched" ion-text color="danger">The Name is required and must be a string from 3 to 64 symbols.</span>
 
     <ion-row>
       <ion-col>

@@ -14,19 +14,19 @@
       <ion-label>Title</ion-label>
       <ion-input name="Title" #Title="ngModel" [(ngModel)]="book.Title" required minlength="3" maxlength="64"></ion-input>
     </ion-item>
-    <span *ngIf="Title.invalid && Title.touched">The Title is required and must be a string from 3 to 64 symbols.</span>
+    <span *ngIf="Title.invalid && Title.touched" ion-text color="danger">The Title is required and must be a string from 3 to 64 symbols.</span>
 
     <ion-item>
       <ion-label>Pages</ion-label>
       <ion-input type="number" name="Pages" #Pages="ngModel" [(ngModel)]="book.Pages" required min="1"></ion-input>
     </ion-item>
-    <span *ngIf="Pages.invalid && Pages.touched">The Pages field is required and must be a number more than 0.</span>
+    <span *ngIf="Pages.invalid && Pages.touched" ion-text color="danger">The Pages field is required and must be a number more than 0.</span>
 
     <ion-item>
       <ion-label>Published Date</ion-label>
       <ion-datetime name="PublishedDate" #PublishedDate="ngModel" [(ngModel)]="book.PublishedDate" required></ion-datetime>
     </ion-item>
-    <span *ngIf="PublishedDate.invalid && PublishedDate.touched">The Published Date field is required.</span>
+    <span *ngIf="PublishedDate.invalid && PublishedDate.touched" ion-text color="danger">The Published Date field is required.</span>
 
     <ion-item>
       <ion-label>Authors</ion-label>
@@ -38,7 +38,7 @@
         </ion-option>
       </ion-select>
 
-      <span *ngIf="Authors.length == 0 && Authors.touched">There must be at least 1 author.</span>
+      <span *ngIf="Authors.length == 0 && Authors.touched" ion-text color="danger">There must be at least 1 author.</span>
     </ion-item>
 
     <ion-row>
