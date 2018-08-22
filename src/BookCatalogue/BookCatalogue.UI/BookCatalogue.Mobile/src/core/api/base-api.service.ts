@@ -1,5 +1,3 @@
-import { Injectable } from "@angular/core";
-import { Observable, ObservableInput } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { baseUrl } from "../../app/app.config";
 import { AlertController } from "ionic-angular";
@@ -24,16 +22,12 @@ export class BaseApiService {
     protected handleError<T>(resp: HttpResponse<T> | any): any {
         this.spinnerService.hide();
 
-        let message: string = "Something happened. Try again, please!";
+        let message: string = `Something happened. Try again, please!\n(Status code: ${resp.status})`;
 
-        if (resp.status == 404) {
-            message = "Resourse is not found.";
-        } else if (resp.status == 400) {
-            let errorsArray = resp.body as string[];
+        let errorsArray = resp.error as string[];
 
-            if (errorsArray != undefined && errorsArray.length > 0) {
-                message = errorsArray.join('\n');
-            }
+        if (errorsArray != undefined && errorsArray.length > 0) {
+            message = errorsArray.join('\n');
         }
 
         this.showAlert(message);
@@ -42,6 +36,7 @@ export class BaseApiService {
 
     protected showAlert(message: string) {
         this.alertCtrl.create({
+            title: 'Error(s)',
             subTitle: message,
             buttons: ['OK']
         }).present();

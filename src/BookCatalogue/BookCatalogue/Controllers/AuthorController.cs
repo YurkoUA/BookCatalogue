@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using BookCatalogue.Infrastructure.Services;
 using BookCatalogue.ViewModels.Request;
 using BookCatalogue.Filters;
@@ -15,6 +10,7 @@ namespace BookCatalogue.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ValidateModelFilter]
+    [ExceptionHandlerFilter]
     public class AuthorController : BaseController
     {
         private readonly IAuthorService authorService;

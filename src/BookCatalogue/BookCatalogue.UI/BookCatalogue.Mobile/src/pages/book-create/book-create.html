@@ -33,7 +33,7 @@
 
       <ion-select name="Authors" #Authors="ngModel" [(ngModel)]="book.AuthorsIds" multiple="true">
 
-        <ion-option *ngFor="let a of authors" [value]="a.Id" [selected]="book.AuthorsIds.indexOf(a.Id) > -1">
+        <ion-option *ngFor="let a of authors" [value]="a.Id">
           {{ a.Name }}
         </ion-option>
       </ion-select>
