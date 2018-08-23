@@ -15,4 +15,18 @@ export abstract class BasePage {
         buttons: ['OK']
       }).present();
     }
+
+    confirm(title: string, message: string, onAccepted: Function) {
+      this.alertCtrl.create({
+        title: title,
+        message: message,
+        buttons: [
+          {
+            text: 'Yes',
+            handler: () => onAccepted()
+          },
+          { text: 'No' }
+        ]
+      }).present();
+    }
 }

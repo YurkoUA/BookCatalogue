@@ -1,4 +1,5 @@
 ﻿using Dapper.Contrib.Extensions;
+using System.Collections.Generic;
 
 namespace BookCatalogue.Data.Entity
 {
@@ -11,5 +12,8 @@ namespace BookCatalogue.Data.Entity
 
         [Write(false)]
         public long BooksCount { get; set; }
+
+        [Write(false)]
+        public List<BookEM> Books { get; set; }
     }
 }

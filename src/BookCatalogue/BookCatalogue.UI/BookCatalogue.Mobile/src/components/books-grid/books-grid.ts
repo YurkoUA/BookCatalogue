@@ -8,6 +8,9 @@ import { PagingModel } from '../../models/paging.model';
 })
 export class BooksGridComponent {
   @Input()
+  isScrollingEnabled: boolean = true;
+
+  @Input()
   books: Book[] = [];
 
   @Input()

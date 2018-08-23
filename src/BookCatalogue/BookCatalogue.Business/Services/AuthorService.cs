@@ -30,10 +30,10 @@ namespace BookCatalogue.Business.Services
             return mapper.ConvertCollectionTo<BaseAuthorVM>(authorsEM);
         }
 
-        public BaseAuthorVM GetAuthor(long id)
+        public AuthorDetailsVM GetAuthor(long id)
         {
             var authorEM = authorRepository.GetAuthor(id);
-            return mapper.ConvertTo<BaseAuthorVM>(authorEM);
+            return mapper.ConvertTo<AuthorDetailsVM>(authorEM);
         }
 
         public long CreateAuthor(BaseAuthorVM author)

@@ -17,6 +17,7 @@ namespace BookCatalogue.Bootstrap.AutoMapper
         private void ConfigureAuthorModels()
         {
             CreateMap<AuthorEM, BaseAuthorVM>();
+            CreateMap<AuthorEM, AuthorDetailsVM>();
 
             CreateMap<BaseAuthorVM, AuthorEM>()
                 .ForMember(dest => dest.BooksCount, opt => opt.Ignore());

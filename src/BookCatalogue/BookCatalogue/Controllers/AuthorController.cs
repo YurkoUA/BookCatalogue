@@ -29,7 +29,9 @@ namespace BookCatalogue.Controllers
         [HttpGet("{id}")]
         public IActionResult GetAuthor(long id)
         {
-            return Ok(authorService.GetAuthor(id));
+            AuthorDetailsVM author = authorService.GetAuthor(id);
+            author.BooksCount = author.Books.Count;
+            return Ok(author);
         }
 
         [HttpGet("Find")]

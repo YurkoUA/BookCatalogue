@@ -16,7 +16,7 @@ export class AuthorService extends BaseRestApiService {
     }
 
     getAllAuthors(paging?: PagingModel): Observable<Author[]> {
-        return this.get('api/author', { params: paging });
+        return this.get('api/author', { params: paging, showLoading: false });
     }
 
     getAuthorById(id: number): Observable<Author> {

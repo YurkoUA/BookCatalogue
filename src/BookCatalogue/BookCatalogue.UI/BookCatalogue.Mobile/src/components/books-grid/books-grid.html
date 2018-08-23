@@ -7,4 +7,6 @@
 
     <rating [rating]="b.Rating"></rating>
   </ion-item>
+
+  <scrolling *ngIf="isScrollingEnabled" (onScroll)="loadAuthors()"></scrolling>
 </ion-list>

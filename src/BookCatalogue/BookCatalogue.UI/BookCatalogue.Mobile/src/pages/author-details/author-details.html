@@ -45,6 +45,6 @@
   <div *ngIf="author.BooksCount > 0">
     <h4>Books:</h4>
 
-    <books-grid [books]="books" (scrolling)="loadBooks($event)" (clicked)="openBookDetails($event)"></books-grid>
+    <books-grid [books]="author.Books" isScrollingEnabled="false" (scrolling)="loadBooks($event)" (clicked)="openBookDetails($event)"></books-grid>
   </div>
 </ion-content>

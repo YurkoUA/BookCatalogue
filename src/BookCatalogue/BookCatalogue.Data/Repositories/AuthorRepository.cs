@@ -3,6 +3,7 @@ using Dapper;
 using BookCatalogue.Infrastructure.Repositories;
 using BookCatalogue.Data.Entity;
 using BookCatalogue.Infrastructure.Interfaces;
+using System.Linq;
 
 namespace BookCatalogue.Data.Repositories
 {
@@ -25,8 +26,22 @@ namespace BookCatalogue.Data.Repositories
         {
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
+            
+            var authorsDictionary = new Dictionary<long, AuthorEM>();
 
-            return ExecuteSPSingle("USP_Author_Get", parameters);
+            return ExecuteSP<AuthorEM, BookEM, AuthorEM>("USP_Author_Get",
+                (author, book) =>
+                {
+                    if (!authorsDictionary.TryGetValue(author.Id, out AuthorEM authorEntry))
+                    {
+                        authorEntry = author;
+                        authorEntry.Books = new List<BookEM>();
+                        authorsDictionary.Add(author.Id, authorEntry);
+                    }
+
+                    authorEntry.Books.Add(book);
+                    return authorEntry;
+                }, "Id", parameters).Distinct().FirstOrDefault();
         }
 
         public IEnumerable<AuthorEM> FindAuthor(string name, long offset, long take)

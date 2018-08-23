@@ -35,17 +35,7 @@ export class BookDetailsPage extends BasePage {
   }
 
   deleteBookConfirm() {
-    this.alertCtrl.create({
-      title: 'Delete the book',
-      message: 'Do you really want to delete this book?',
-      buttons: [
-        {
-          text: 'Yes',
-          handler: () => this.deleteBook()
-        },
-        { text: 'No' }
-      ]
-    }).present();
+    this.confirm('Delete the book', 'Do you really want to delete this book?', () => this.deleteBook());
   }
 
   deleteBook() {

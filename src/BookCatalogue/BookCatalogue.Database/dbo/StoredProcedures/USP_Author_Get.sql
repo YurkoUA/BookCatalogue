@@ -1,9 +1,23 @@
 ﻿CREATE PROCEDURE [dbo].[USP_Author_Get]
-	@Id BIGINT
+	@id BIGINT
 AS
 
-	SELECT *
-	FROM [v_Authors]
-	WHERE [v_Authors].[Id] = @Id
+	SELECT	[a].[Id],
+			[a].[Name],
+
+			-- Book
+			[b].[Id],
+			[b].[Title],
+			[b].[Pages],
+			[b].[PublishedDate],
+			[b].[Rating]
+
+	FROM [Author] AS [a]
+	JOIN [BookAuthor] AS [ba] ON [ba].[AuthorId] = [a].[Id]
+	JOIN [Book] AS [b] ON [b].[Id] = [ba].[BookId]
+
+	WHERE [a].[Id] = @Id
+
+	ORDER BY [b].[Title]
 
 RETURN 0

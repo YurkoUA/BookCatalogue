@@ -3,9 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { BasePage } from '../base-page';
 import { Author } from '../../models/author';
 import { AuthorService } from '../../services/author.service';
-import { Book } from '../../models/book';
-import { BookService } from '../../services/book.service';
-import { PagingModel } from '../../models/paging.model';
 import { BookDetailsPage } from '../book-details/book-details';
 import { AuthorCreatePage } from '../author-create/author-create';
 import { AuthorsListPage } from '../authors-list/authors-list';
@@ -17,13 +14,11 @@ import { AuthorsListPage } from '../authors-list/authors-list';
 })
 export class AuthorDetailsPage extends BasePage {
   author: Author = new Author();
-  books: Book[] = [];
 
   constructor(navCtrl: NavController, 
     navParams: NavParams,
     alertCtrl: AlertController,
-    private authorService: AuthorService,
-    private bookService: BookService) {
+    private authorService: AuthorService) {
       super(navCtrl, navParams, alertCtrl);
 
       let id: number = navParams.get("id");
@@ -36,20 +31,6 @@ export class AuthorDetailsPage extends BasePage {
     this.authorService.getAuthorById(id)
       .subscribe(a => {
         this.author = a;
-
-        if (a.BooksCount > 0)
-          this.loadBooks();
-      });
-  }
-
-  loadBooks(paging?: PagingModel) {
-    this.bookService.getBooksByAuthor(this.author.Id, paging)
-      .subscribe(b => {
-        this.books = this.books.concat(b);
-        
-        if (paging != undefined) {
-          paging.update();
-        }
       });
   }
 
@@ -62,17 +43,7 @@ export class AuthorDetailsPage extends BasePage {
   }
 
   deleteAuthorConfirm() {
-    this.alertCtrl.create({
-      title: 'Delete the author',
-      message: 'Do you really want to delete this author?',
-      buttons: [
-        {
-          text: 'Yes',
-          handler: () => this.deleteAuthor()
-        },
-        { text: 'No' }
-      ]
-    }).present();
+    this.confirm('Delete the author', 'Do you really want to delete this author?', () => this.deleteAuthor());
   }
 
   deleteAuthor() {
