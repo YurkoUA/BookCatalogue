@@ -4,6 +4,7 @@ using BookCatalogue.ViewModels.Request;
 using BookCatalogue.Filters;
 using BookCatalogue.ViewModels.Author;
 using BookCatalogue.ViewModels.Response;
+using System.Linq;
 
 namespace BookCatalogue.Controllers
 {
@@ -30,7 +31,11 @@ namespace BookCatalogue.Controllers
         public IActionResult GetAuthor(long id)
         {
             AuthorDetailsVM author = authorService.GetAuthor(id);
-            author.BooksCount = author.Books.Count;
+
+            if (author.Books?.Any() == true && author.Books.FirstOrDefault() == null)
+                author.Books = null;
+
+            author.BooksCount = author.Books?.Count ?? 0;
             return Ok(author);
         }
 

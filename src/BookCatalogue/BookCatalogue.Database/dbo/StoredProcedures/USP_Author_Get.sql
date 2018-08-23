@@ -13,8 +13,8 @@ AS
 			[b].[Rating]
 
 	FROM [Author] AS [a]
-	JOIN [BookAuthor] AS [ba] ON [ba].[AuthorId] = [a].[Id]
-	JOIN [Book] AS [b] ON [b].[Id] = [ba].[BookId]
+	LEFT JOIN [BookAuthor] AS [ba] ON [ba].[AuthorId] = [a].[Id]
+	LEFT JOIN [Book] AS [b] ON [b].[Id] = [ba].[BookId]
 
 	WHERE [a].[Id] = @Id
 
