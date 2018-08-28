@@ -30,6 +30,12 @@ namespace BookCatalogue.Business.Services
             return mapper.ConvertCollectionTo<BaseAuthorVM>(authorsEM);
         }
 
+        public IEnumerable<BaseAuthorVM> GetForSelectList()
+        {
+            var authorsEM = authorRepository.GetForSelectList();
+            return mapper.ConvertCollectionTo<BaseAuthorVM>(authorsEM);
+        }
+
         public AuthorDetailsVM GetAuthor(long id)
         {
             var authorEM = authorRepository.GetAuthor(id);

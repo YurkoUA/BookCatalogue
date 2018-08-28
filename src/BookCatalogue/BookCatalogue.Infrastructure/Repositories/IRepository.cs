@@ -12,17 +12,17 @@ namespace BookCatalogue.Infrastructure.Repositories
         void Update(TEntity entity);
         void Delete(long id);
 
-        void ExecuteQuery(string query, object paramModel);
-        TEntity ExecuteQuerySingle(string query, object paramModel);
-        TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel);
+        IEnumerable<TEntity> ExecuteQuery(string query, object paramModel = null);
+        TEntity ExecuteQuerySingle(string query, object paramModel = null);
+        TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel = null);
 
-        void ExecuteSP(string name, object paramModel);
+        void ExecuteSP(string name, object paramModel = null);
 
-        TEntity ExecuteSPSingle(string name, object paramModel);
+        TEntity ExecuteSPSingle(string name, object paramModel = null);
 
-        IEnumerable<TEntity> ExecuteSimpleSP(string name, object paramModel);
+        IEnumerable<TEntity> ExecuteSimpleSP(string name, object paramModel = null);
 
-        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel);
-        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel);
+        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null);
+        IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null);
     }
 }

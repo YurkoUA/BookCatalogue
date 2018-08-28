@@ -6,6 +6,7 @@ namespace BookCatalogue.Infrastructure.Repositories
     public interface IAuthorRepository : IRepository<AuthorEM>
     {
         IEnumerable<AuthorEM> GetAllAuthors(long offset, long take);
+        IEnumerable<AuthorEM> GetForSelectList();
         AuthorEM GetAuthor(long id);
         IEnumerable<AuthorEM> FindAuthor(string name, long offset, long take);
 

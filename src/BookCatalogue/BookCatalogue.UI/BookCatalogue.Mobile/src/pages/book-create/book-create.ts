@@ -11,6 +11,7 @@ import { Author } from '../../models/author';
 import { AuthorService } from '../../services/author.service';
 import { PagingModel } from '../../models/paging.model';
 import { isNumber } from 'ionic-angular/util/util';
+import { ModelMapperService } from '../../services/model-mapper.service';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,8 @@ export class BookCreatePage extends BasePage {
 
   constructor(navCtrl: NavController, navParams: NavParams, alertCtrl: AlertController, 
       private bookService: BookService,
-      private authorService: AuthorService) {
+      private authorService: AuthorService,
+      private mapper: ModelMapperService) {
     super(navCtrl, navParams, alertCtrl);
     this.loadAuthors();
 
@@ -47,15 +49,12 @@ export class BookCreatePage extends BasePage {
     this.bookService.getBookById(id)
       .subscribe(b => {
         this.bookMomento = Object.assign({}, b);
-        this.book.Title = b.Title;
-        this.book.Pages = b.Pages;
-        this.book.PublishedDate = b.PublishedDate;
-        this.book.AuthorsIds = b.Authors.map(b => b.Id);
+        this.book = this.mapper.toBookCreate(b);
       });
   }
 
   loadAuthors() {
-    this.authorService.getAllAuthors(new PagingModel(0, 1000000))
+    this.authorService.getForSelectList()
       .subscribe(a => this.authors = this.authors.concat(a));
   }
 

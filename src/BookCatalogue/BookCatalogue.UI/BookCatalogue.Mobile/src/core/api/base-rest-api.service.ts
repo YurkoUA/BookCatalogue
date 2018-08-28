@@ -13,7 +13,7 @@ export class BaseRestApiService extends BaseApiService {
     }
 
     get<T>(url: string, options: RequestOptions = {}): Observable<T> {
-        if (options.params.id)
+        if (options.params && options.params.id)
             url += `/${options.params.id}/`;
 
         if (options.showLoading != false)

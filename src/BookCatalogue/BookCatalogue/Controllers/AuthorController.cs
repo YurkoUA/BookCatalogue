@@ -45,6 +45,12 @@ namespace BookCatalogue.Controllers
             return Ok(authorService.FindAuthor(search.Expression, search.Offset, search.Take));
         }
 
+        [HttpGet("SelectList")]
+        public IActionResult GetSelectList()
+        {
+            return Ok(authorService.GetForSelectList());
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]BaseAuthorVM author)
         {

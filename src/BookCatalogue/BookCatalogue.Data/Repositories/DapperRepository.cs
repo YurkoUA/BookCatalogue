@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using BookCatalogue.Infrastructure.Repositories;
@@ -47,42 +45,42 @@ namespace BookCatalogue.Data.Repositories
             });
         }
 
-        public void ExecuteQuery(string query, object paramModel)
+        public IEnumerable<TEntity> ExecuteQuery(string query, object paramModel = null)
         {
-            dbContext.PerformOperation(db => db.Query(query, paramModel));
+            return dbContext.PerformOperation(db => db.Query<TEntity>(query, paramModel));
         }
 
-        public TEntity ExecuteQuerySingle(string query, object paramModel)
+        public TEntity ExecuteQuerySingle(string query, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.QueryFirstOrDefault<TEntity>(query, paramModel));
         }
 
-        public TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel)
+        public TReturn ExecuteQuerySingle<TReturn>(string query, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.QueryFirstOrDefault<TReturn>(query, paramModel));
         }
 
-        public void ExecuteSP(string name, object paramModel)
+        public void ExecuteSP(string name, object paramModel = null)
         {
             dbContext.PerformOperation(db => db.Query(name, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public TEntity ExecuteSPSingle(string name, object paramModel)
+        public TEntity ExecuteSPSingle(string name, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.QueryFirstOrDefault<TEntity>(name, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TEntity> ExecuteSimpleSP(string name, object paramModel)
+        public IEnumerable<TEntity> ExecuteSimpleSP(string name, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.Query<TEntity>(name, paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel)
+        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TReturn>(string name, Func<TFirst, TSecond, TReturn> map, string splitOn, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.Query(name, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }
 
-        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel)
+        public IEnumerable<TReturn> ExecuteSP<TFirst, TSecond, TThird, TReturn>(string name, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn, object paramModel = null)
         {
             return dbContext.PerformOperation(db => db.Query(name, map, splitOn: splitOn, param: paramModel, commandType: CommandType.StoredProcedure));
         }

@@ -22,6 +22,11 @@ namespace BookCatalogue.Data.Repositories
             return ExecuteSimpleSP("USP_Author_GetList", parameters);
         }
 
+        public IEnumerable<AuthorEM> GetForSelectList()
+        {
+            return ExecuteQuery("SELECT [Id], [Name] FROM [Author] ORDER BY [Name]");
+        }
+
         public AuthorEM GetAuthor(long id)
         {
             var parameters = new DynamicParameters();

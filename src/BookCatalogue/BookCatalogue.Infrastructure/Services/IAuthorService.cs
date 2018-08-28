@@ -7,6 +7,7 @@ namespace BookCatalogue.Infrastructure.Services
     {
         IEnumerable<BaseAuthorVM> GetAllAuthors(long offset, long take);
         IEnumerable<BaseAuthorVM> FindAuthor(string name, long offset, long take);
+        IEnumerable<BaseAuthorVM> GetForSelectList();
         AuthorDetailsVM GetAuthor(long id);
 
         long CreateAuthor(BaseAuthorVM author);

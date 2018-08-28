@@ -11,31 +11,37 @@ import { SearchModel } from "../models/search.model";
 
 @Injectable()
 export class AuthorService extends BaseRestApiService {
+    private entityUrl: string = 'api/Author';
+
     constructor(http: HttpClient, alertCtrl: AlertController, spinnerService: SpinnerService) {
         super(http, alertCtrl, spinnerService);
     }
 
     getAllAuthors(paging?: PagingModel): Observable<Author[]> {
-        return this.get('api/author', { params: paging, showLoading: false });
+        return this.get(this.entityUrl, { params: paging, showLoading: false });
     }
 
     getAuthorById(id: number): Observable<Author> {
-        return this.get('api/author', { params: { id: id } });
+        return this.get(this.entityUrl, { params: { id: id } });
     }
 
-    findAuthors(search: SearchModel) {
-        return this.get('api/Author/Find', { params: search, showLoading: false });
+    findAuthors(search: SearchModel): Observable<Author[]> {
+        return this.get(`${this.entityUrl}/Find`, { params: search, showLoading: false });
+    }
+
+    getForSelectList(): Observable<Author[]> {
+        return this.get(`${this.entityUrl}/SelectList`);
     }
 
     createAuthor(author: AuthorCreateModel): Observable<number> {
-        return this.post<AuthorCreateModel, number>('api/author', author);
+        return this.post<AuthorCreateModel, number>(this.entityUrl, author);
     }
 
     editAuthor(id: number, author: AuthorCreateModel): Observable<boolean> {
-        return this.put('api/author/' + id, author);
+        return this.put(`${this.entityUrl}/${id}`, author);
     }
 
     deleteAuthor(id: number): Observable<boolean> {
-        return this.delete('api/author/' + id);
+        return this.delete(`${this.entityUrl}/${id}`);
     }
 }

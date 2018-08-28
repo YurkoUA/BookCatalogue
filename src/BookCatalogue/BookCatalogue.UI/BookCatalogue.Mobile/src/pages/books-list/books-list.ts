@@ -7,6 +7,7 @@ import { PagingModel } from '../../models/paging.model';
 import { BookDetailsPage } from '../book-details/book-details';
 import { BookCreatePage } from '../book-create/book-create';
 import { SearchModel } from '../../models/search.model';
+import 'rxjs/add/operator/debounceTime';
 
 @IonicPage()
 @Component({
@@ -31,13 +32,14 @@ export class BooksListPage extends BasePage {
   }
   
   loadBooks() {
-    if (this.isSearch) {
-      this.bookService.findBook(this.searchModel)
-        .subscribe(b => this.concatBooks(b, this.searchModel));
-    } else {
-      this.bookService.getAllBooks(this.pagingModel)
-        .subscribe(b => this.concatBooks(b, this.pagingModel));
-    }
+    this.bookService.getAllBooks(this.pagingModel)
+      .subscribe(b => this.concatBooks(b, this.pagingModel));
+  }
+
+  findBooks() {
+    this.bookService.findBook(this.searchModel)
+      .debounceTime(4000)
+      .subscribe(b => this.concatBooks(b, this.searchModel));
   }
 
   concatBooks(books: Book[], paging?: PagingModel) {
@@ -59,26 +61,23 @@ export class BooksListPage extends BasePage {
     let text = event.target.value;
 
     if (text != undefined && text.length > 0) {
-      if (!this.isSearch) {
-        this.isSearch = true;
-        this.booksGridPaging = this.searchModel;
-        this.pagingModel.reset();
-      }
-
       if (!this.isSearch || this.searchModel.expression != text) {
-        this.searchModel.reset();
+        this.booksGridPaging = this.searchModel;
+        this.isSearch = true;
         this.books = [];
+        this.searchModel.reset();
       }
 
       this.searchModel.expression = text;
-
+      this.findBooks();
     } else {
-      this.booksGridPaging = this.pagingModel;
       this.isSearch = false;
       this.searchModel.reset();
+      this.pagingModel.reset();
+      this.booksGridPaging = this.pagingModel;
       this.books = [];
+
+      this.loadBooks();
     }
-      
-    this.loadBooks();
   }
 }

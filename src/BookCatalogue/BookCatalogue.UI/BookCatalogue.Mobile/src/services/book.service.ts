@@ -11,35 +11,37 @@ import { SearchModel } from "../models/search.model";
 
 @Injectable()
 export class BookService extends BaseRestApiService { 
+    private entityUrl: string = 'api/Book';
+
     constructor(http: HttpClient, alertCtrl: AlertController, spinnerService: SpinnerService) {
         super(http, alertCtrl, spinnerService);
     }
 
     getAllBooks(paging?: PagingModel): Observable<Book[]> {
-        return this.get('api/Book', { params: paging });
+        return this.get(this.entityUrl, { params: paging });
     }
 
     getBookById(id: number): Observable<Book> {
-        return this.get('api/Book', { params: { id: id }});
+        return this.get(this.entityUrl, { params: { id: id }});
     }
 
     getBooksByAuthor(authorId: number, paging?: PagingModel): Observable<Book[]> {
-        return this.get('api/Book/ByAuthor', { params: Object.assign({ id: authorId }, paging)});
+        return this.get(`${this.entityUrl}/ByAuthor`, { params: Object.assign({ id: authorId }, paging)});
     }
 
     findBook(search: SearchModel): Observable<Book[]> {
-        return this.get('api/Book/Find', { params: search, showLoading: false })
+        return this.get(`${this.entityUrl}/Find`, { params: search, showLoading: false })
     }
 
     createBook(book: BookCreateModel): Observable<number> {
-        return this.post<BookCreateModel, number>('api/Book', book);
+        return this.post<BookCreateModel, number>(this.entityUrl, book);
     }
 
     editBook(id: number, book: BookCreateModel): Observable<boolean> {
-        return this.put('api/Book/' + id, book);
+        return this.put(`${this.entityUrl}/${id}`, book);
     }
 
     deleteBook(id: number): Observable<boolean> {
-        return this.delete('api/Book/' + id);
+        return this.delete(`${this.entityUrl}/${id}`);
     }
 }

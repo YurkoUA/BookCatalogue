@@ -7,6 +7,7 @@ import { BasePage } from '../base-page';
 import { AuthorDetailsPage } from '../author-details/author-details';
 import { AuthorCreatePage } from '../author-create/author-create';
 import { SearchModel } from '../../models/search.model';
+import 'rxjs/add/operator/debounceTime';
 
 @IonicPage()
 @Component({
@@ -32,13 +33,14 @@ export class AuthorsListPage extends BasePage {
   }
 
   loadAuthors() {
-    if (this.isSearch) {
-      this.authorService.findAuthors(this.searchModel)
-        .subscribe((a: Author[]) => this.concatAuthors(a, this.searchModel));
-    } else {
-      this.authorService.getAllAuthors(this.pagingModel)
-        .subscribe((a: Author[]) => this.concatAuthors(a, this.pagingModel));
-    }
+    this.authorService.getAllAuthors(this.pagingModel)
+      .subscribe((a: Author[]) => this.concatAuthors(a, this.pagingModel));
+  }
+
+  findAuthors() {
+    this.authorService.findAuthors(this.searchModel)
+      .debounceTime(4000)
+      .subscribe((a: Author[]) => this.concatAuthors(a, this.searchModel));
   }
 
   openDetails(id: number) {
@@ -55,27 +57,24 @@ export class AuthorsListPage extends BasePage {
   }
 
   search(event: any) {
-    let text = event.target.value;
+    let text: string = event.target.value;
 
     if (text != undefined && text.length > 0) {
-      if (!this.isSearch) {
-        this.isSearch = true;
-        this.pagingModel.reset();
-      }
-
       if (!this.isSearch || this.searchModel.expression != text) {
-        this.searchModel.reset();
+        this.isSearch = true;
         this.authorsList = [];
+        this.searchModel.reset();
       }
 
       this.searchModel.expression = text;
-
+      this.findAuthors();
     } else {
       this.isSearch = false;
       this.searchModel.reset();
+      this.pagingModel.reset();
       this.authorsList = [];
+
+      this.loadAuthors();
     }
-      
-    this.loadAuthors();
   }
 }

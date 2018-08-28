@@ -14,7 +14,7 @@ AS
 			[b].[Name]
 
 	FROM [v_Books] AS [b]
-	WHERE [b].[Title] LIKE CONCAT('%', @Title, '%')
+	WHERE [b].[Title] LIKE CONCAT('%', @title, '%')
 
 	ORDER BY [b].[Title]
 

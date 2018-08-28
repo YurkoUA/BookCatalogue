@@ -5,7 +5,7 @@
 AS
 	SELECT *
 	FROM [v_Authors] AS [a]
-	WHERE [a].[Name] LIKE CONCAT('%', @Name, '%')
+	WHERE [a].[Name] LIKE CONCAT('%', @name, '%')
 
 	ORDER BY [a].[Name]
 
